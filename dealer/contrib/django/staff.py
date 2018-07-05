@@ -9,7 +9,7 @@ def context_processor(request):
     :return dict: A context with revision and tag.
 
     """
-    return dict(REVISION=BACKEND.revision, TAG=BACKEND.tag)
+    return dict(REVISION=BACKEND.revision, TAG=BACKEND.tag, REVISION_DATETIME=BACKEND.revision_datetime)
 
 
 class Middleware:
@@ -22,6 +22,7 @@ class Middleware:
     def __call__(self, request):
         request.revision = BACKEND.revision
         request.tag = BACKEND.tag
+        request.revision_datetime = BACKEND.revision_datetime
         response = self.get_response(request)
         return response
     

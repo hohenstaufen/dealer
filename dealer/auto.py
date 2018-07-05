@@ -7,7 +7,7 @@ class Backend(SCMBackend):
 
     """ Check path and select backend automaticaly. """
 
-    default_backends = 'git', 'mercurial', 'simple', 'env', 'null'
+    default_backends = 'git'
 
     def __init__(self, **kwargs):
         """ Init backend. """
@@ -38,6 +38,7 @@ class Backend(SCMBackend):
             self._repo = self._backend.repo
             self._revision = self._backend.revision
             self._tag = self._backend.tag
+            self._revision_datetime = self._backend.revision_datetime
             return self._repo
 
         raise TypeError('Invalid project: {0}'.format(self.path))
